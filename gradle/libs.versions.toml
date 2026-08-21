@@ -1,0 +1,49 @@
+[versions]
+android-plugin = "9.3.1"
+
+conventions = "0.0.102"
+
+detekt = "2.0.0-alpha.6"
+
+ktlintCustomRules = "0.1.1"
+
+dokka = "2.2.0"
+
+jvmTarget = "17"
+
+kotest = "6.2.4"
+
+kotlin = "2.4.10"
+
+ktlint = "1.8.0"
+
+publish = "0.37.0"
+
+[plugins]
+conventionsBase = { id = "com.eygraber.conventions", version.ref = "conventions" }
+conventionsDetekt = { id = "com.eygraber.conventions-detekt2" }
+conventionsKotlin = { id = "com.eygraber.conventions-kotlin-library" }
+conventionsPublishToMavenCentral = { id = "com.eygraber.conventions-publish-maven-central" }
+dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis" }
+dependencyAnalysisRoot = { id = "com.autonomousapps.dependency-analysis", version = "3.18.0" }
+
+[libraries]
+asm = { module = "org.ow2.asm:asm", version = "9.10.1" }
+buildscript-android = { module = "com.android.tools.build:gradle", version.ref = "android-plugin" }
+buildscript-detekt = { module = "dev.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+buildscript-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+buildscript-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+buildscript-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publish" }
+
+# just here so renovate picks it up
+# noinspection UnusedVersionCatalogEntry
+ktlint = { module = "com.pinterest.ktlint:ktlint-bom", version.ref = "ktlint" }
+
+# just here so renovate picks it up
+# noinspection UnusedVersionCatalogEntry
+ktlintCustomRules = { module = "com.eygraber.ktlint.rules:ktlint-rules", version.ref = "ktlintCustomRules" }
+
+test-junit = "junit:junit:4.13.2"
+test-kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+test-kotest-assertions-shared = { module = "io.kotest:kotest-assertions-shared", version.ref = "kotest" }
+

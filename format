@@ -1,0 +1,43 @@
+#!/bin/bash
+
+ktlint_version=$(sed -n 's/ktlint = "\(.*\)"/\1/p' gradle/libs.versions.toml)
+ktlint_url="https://repo1.maven.org/maven2/com/pinterest/ktlint/ktlint-cli/$ktlint_version/ktlint-cli-$ktlint_version-all.jar"
+
+ktlint_custom_rules_version=$(sed -n 's/ktlintCustomRules = "\(.*\)"/\1/p' gradle/libs.versions.toml)
+ktlint_custom_rules_url="https://repo1.maven.org/maven2/com/eygraber/ktlint-rules/$ktlint_custom_rules_version/ktlint-rules-$ktlint_custom_rules_version.jar"
+
+# Set the destination directory and file name
+destination_dir="/tmp"
+ktlint_file_name="ktlint-$ktlint_version"
+ktlint="$destination_dir/$ktlint_file_name"
+ktlint_custom_rules_file_name="ktlint-rules-$ktlint_custom_rules_version.jar"
+ktlint_custom_rules="$destination_dir/$ktlint_custom_rules_file_name"
+
+# Check if the files already exist in the destination directory
+if [ ! -e "$ktlint" ]; then
+  wget -qO "$ktlint" "$ktlint_url"
+  chmod +x "$ktlint"
+fi
+
+if [ ! -e "$ktlint_custom_rules" ]; then
+  wget -qO "$ktlint_custom_rules" "$ktlint_custom_rules_url"
+fi
+
+should_format=true
+for arg in "$@"; do
+  if [ "$arg" == "--no-format" ]; then
+    should_format=false
+    set -- "${@//--no-format/}"
+    break
+  fi
+done
+
+args=()
+
+if [ "$should_format" = true ]; then
+  args+=("--format")
+fi
+
+args+=("$@")
+
+java -jar "$ktlint" --ruleset="$ktlint_custom_rules" **/*.kt **/*.kts \!**/build/** \!Dangerfile.df.kts --color --color-name=YELLOW "${args[@]}"

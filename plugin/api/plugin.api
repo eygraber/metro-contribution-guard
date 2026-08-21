@@ -1,0 +1,47 @@
+public abstract class com/eygraber/metro/guard/GenerateMetroContributionIndexTask : org/gradle/api/DefaultTask {
+	public fun <init> ()V
+	public abstract fun getCompilationIndexes ()Lorg/gradle/api/file/ConfigurableFileCollection;
+	public abstract fun getIndexFile ()Lorg/gradle/api/file/RegularFileProperty;
+	public abstract fun getProjectPath ()Lorg/gradle/api/provider/Property;
+	public final fun merge ()V
+}
+
+public abstract class com/eygraber/metro/guard/MetroAggregationValidationExtension {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun excludeProject (Ljava/lang/String;[Ljava/lang/String;)V
+	public abstract fun getExcludedProjects ()Lorg/gradle/api/provider/SetProperty;
+}
+
+public final class com/eygraber/metro/guard/MetroAggregationValidationPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/eygraber/metro/guard/MetroContributionIndexPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public abstract class com/eygraber/metro/guard/ScanMetroContributionsTask : org/gradle/api/DefaultTask {
+	public fun <init> ()V
+	public abstract fun getClassesDirectories ()Lorg/gradle/api/file/ConfigurableFileCollection;
+	public abstract fun getIndexFile ()Lorg/gradle/api/file/RegularFileProperty;
+	public abstract fun getInputDirectories ()Lorg/gradle/api/provider/ListProperty;
+	public abstract fun getInputJars ()Lorg/gradle/api/provider/ListProperty;
+	public abstract fun getProjectPath ()Lorg/gradle/api/provider/Property;
+	public final fun scan ()V
+}
+
+public abstract class com/eygraber/metro/guard/ValidateMetroAggregationDependenciesTask : org/gradle/api/DefaultTask {
+	public fun <init> ()V
+	public abstract fun getCompilationId ()Lorg/gradle/api/provider/Property;
+	public abstract fun getContributionIndexes ()Lorg/gradle/api/file/ConfigurableFileCollection;
+	public abstract fun getExcludedProjects ()Lorg/gradle/api/provider/SetProperty;
+	public abstract fun getProjectPath ()Lorg/gradle/api/provider/Property;
+	public abstract fun getReportFile ()Lorg/gradle/api/file/RegularFileProperty;
+	public abstract fun getVisibleProjectPaths ()Lorg/gradle/api/provider/SetProperty;
+	public final fun validate ()V
+}
+
