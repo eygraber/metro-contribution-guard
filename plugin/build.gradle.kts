@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // The `kotlin-dsl` plugin pins the Kotlin Gradle plugin on this project's buildscript classpath to
 // Gradle's embedded Kotlin version, which lags behind the version we run. Align it with the project's
@@ -63,6 +64,13 @@ dependencies {
 }
 
 tasks {
+  // https://github.com/gradle/gradle/issues/38634 (remove once on Gradle 9.9.0)
+  withType<KotlinCompile>().configureEach {
+    compilerOptions {
+      freeCompilerArgs.set(freeCompilerArgs.get().filterNot { it.startsWith("-Xuse-fir-lt") })
+    }
+  }
+
   pluginUnderTestMetadata {
     pluginClasspath.from(additionalPluginClasspath)
   }
