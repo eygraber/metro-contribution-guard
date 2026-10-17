@@ -28,7 +28,7 @@ dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis" }
 dependencyAnalysisRoot = { id = "com.autonomousapps.dependency-analysis", version = "3.19.2" }
 
 [libraries]
-asm = { module = "org.ow2.asm:asm", version = "9.11" }
+asm = { module = "org.ow2.asm:asm", version = "9.11.1" }
 buildscript-android = { module = "com.android.tools.build:gradle", version.ref = "android-plugin" }
 buildscript-detekt = { module = "dev.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 buildscript-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
